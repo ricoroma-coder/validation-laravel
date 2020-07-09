@@ -37,6 +37,15 @@
                         <a href="{{ route('clientes') }}" class="btn btn-danger btn-sm">Voltar</a>
                     </form>
                 </div>
+                @if ($errors->any())
+                    <div class="card-footer">
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger" role="alert">
+                                {{ $error }}
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
     </div>

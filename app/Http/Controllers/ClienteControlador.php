@@ -37,9 +37,16 @@ class ClienteControlador extends Controller
     public function store(Request $request)
     {
         $cliente = new Cliente();
+        $request->validate([
+            'nome' => 'required',
+            'idade' => 'required',
+            'endereco' => 'required',
+            'email' => 'required'
+        ]);
         foreach ($request->input() as $key => $value) {
-            if ($key != '_method' && $key != '_token')
-                $cliente->$key = $value;
+            if ($key != '_method' && $key != '_token') {
+                    $cliente->$key = $value;
+            }
         }
         $cliente->save();
         return redirect(route('clientes'));
