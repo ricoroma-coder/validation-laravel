@@ -11,7 +11,7 @@
                     <div class="title">Cadastro de Clientes</div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('clientes') }}" method="post">
+                    <form action="{{ route('insertCliente') }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="nome">Nome</label>

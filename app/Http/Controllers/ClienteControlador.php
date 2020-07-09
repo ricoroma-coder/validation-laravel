@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cliente;
 
 class ClienteControlador extends Controller
 {
@@ -13,7 +14,8 @@ class ClienteControlador extends Controller
      */
     public function index()
     {
-        //
+        $clientes = Cliente::all();
+        return view('clientes', compact('clientes'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ClienteControlador extends Controller
      */
     public function create()
     {
-        //
+        return view('novo_cliente');
     }
 
     /**
@@ -34,7 +36,13 @@ class ClienteControlador extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cliente = new Cliente();
+        foreach ($request->input() as $key => $value) {
+            if ($key != '_method' && $key != '_token')
+                $cliente->$key = $value;
+        }
+        $cliente->save();
+        return redirect(route('clientes'));
     }
 
     /**
