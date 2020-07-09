@@ -38,7 +38,7 @@ class ClienteControlador extends Controller
     {
         $cliente = new Cliente();
         $request->validate([
-            'nome' => 'required',
+            'nome' => 'required|min:5|max:10',
             'idade' => 'required',
             'endereco' => 'required',
             'email' => 'required'
