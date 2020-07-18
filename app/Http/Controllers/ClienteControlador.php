@@ -38,10 +38,10 @@ class ClienteControlador extends Controller
     {
         $cliente = new Cliente();
         $request->validate([
-            'nome' => 'required|min:5|max:10',
+            'nome' => 'required|min:3|max:20',
             'idade' => 'required',
             'endereco' => 'required',
-            'email' => 'required'
+            'email' => 'required|unique:clientes'
         ]);
         foreach ($request->input() as $key => $value) {
             if ($key != '_method' && $key != '_token') {
