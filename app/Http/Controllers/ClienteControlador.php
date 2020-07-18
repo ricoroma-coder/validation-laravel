@@ -36,20 +36,34 @@ class ClienteControlador extends Controller
      */
     public function store(Request $request)
     {
-        $cliente = new Cliente();
-        $request->validate([
+        $regras = [
             'nome' => 'required|min:3|max:20',
             'idade' => 'required',
             'endereco' => 'required',
-            'email' => 'required|unique:clientes'
-        ]);
-        foreach ($request->input() as $key => $value) {
-            if ($key != '_method' && $key != '_token') {
-                    $cliente->$key = $value;
-            }
-        }
-        $cliente->save();
-        return redirect(route('clientes'));
+            'email' => 'required|unique:clientes|email'
+        ];
+
+        $mensagens = [
+            'required' => 'Preencha todos os campos',
+            'email.email' => 'Digite um email válido'
+        ];
+
+        $request->validate($regras, $mensagens)->all();
+
+        // $request->validate([
+        //     'nome' => 'required|min:3|max:20',
+        //     'idade' => 'required',
+        //     'endereco' => 'required',
+        //     'email' => 'required|unique:clientes|email'
+        // ], $mensagens);
+        // $cliente = new Cliente();
+        // foreach ($request->input() as $key => $value) {
+        //     if ($key != '_method' && $key != '_token') {
+        //             $cliente->$key = $value;
+        //     }
+        // }
+        // $cliente->save();
+        // return redirect(route('clientes'));
     }
 
     /**
