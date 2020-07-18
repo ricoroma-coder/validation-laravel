@@ -44,7 +44,7 @@ class ClienteControlador extends Controller
         ];
 
         $mensagens = [
-            'required' => 'Preencha todos os campos',
+            'required' => 'Preencha esse campo',
             'email.email' => 'Digite um email válido'
         ];
 

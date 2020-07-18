@@ -15,7 +15,12 @@
                         @csrf
                         <div class="form-group">
                             <label for="nome">Nome</label>
-                            <input type="text" name="nome" class="form-control" placeholder="Nome">
+                            <input type="text" name="nome" class="form-control {{ $errors->has('nome') ? 'is-invalid' : '' }}" placeholder="Nome">
+                            @if ($errors->has('nome'))
+                                <div class="pl-1 invalid-feedback">
+                                    {{ $errors->first('nome') }}
+                                </div>
+                            @endif
                         </div>
 
                         <div class="form-group">
